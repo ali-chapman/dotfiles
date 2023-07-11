@@ -8,4 +8,5 @@ if status is-interactive
   alias gs "git status"
   alias gd "git diff"
   alias gpo 'git push -u origin $(git branch --show-current)'
+  abbr -a gsw "git switch"
 end
