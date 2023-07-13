@@ -52,7 +52,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  { "folke/trouble.nvim", cmd = "TroubleToggle" },
+  { "folke/trouble.nvim",            cmd = "TroubleToggle" },
   {
     "ur4ltz/surround.nvim",
     config = function()
@@ -102,9 +102,6 @@ remap('n', 'H', ':bprev<CR>', { noremap = true })
 remap('n', 'L', ':bnext<CR>', { noremap = true })
 remap('n', '<C-t>', ':ToggleTerm<CR>', { noremap = true })
 
--- set comment colour
-vim.cmd [[au VimEnter * hi TSComment ctermfg=Cyan guifg=#80a0ff gui=bold]]
-
 npairs.setup {}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -113,12 +110,3 @@ vim.api.nvim_create_autocmd("BufEnter", {
   -- enable wrap mode for json files only
   command = "setlocal wrap",
 })
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "zsh",
-  callback = function()
-    -- let treesitter use bash highlight for zsh files as well
-    require("nvim-treesitter.highlight").attach(0, "bash")
-  end,
-})
-
-
