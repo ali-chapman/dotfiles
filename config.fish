@@ -2,6 +2,7 @@ if status is-interactive
   set -gx LESS "-FRX"
   set -gx PNPM_HOME "/home/alichapman/.local/share/pnpm"
   set -gx fish_greeting
+  set -gx EDITOR "~/.local/bin/lvim"
 
   fish_add_path ~/.npm-global/bin ~/.local/bin ~/.cargo/bin ~/go/bin $PNPM_HOME
 
@@ -12,7 +13,7 @@ if status is-interactive
 
   function wa
     set -f APPID "5QEE8H-V4H8V4YEK8"
-    set -f VIEWER "display"
+    set -f VIEWER "w3m"
     echo $argv | string escape --style=url | read question_string
     set -f base "https://api.wolframalpha.com/v1"
     set -f url $base"/result?appid="$APPID"&i="$question_string
@@ -20,7 +21,7 @@ if status is-interactive
     if test "No short answer available" = $response
       echo "$response, downloading full answer..."
       set -f url2 $base"/simple?appid="$APPID"&i="$question_string
-      curl -s $url2 | $VIEWER
+      w3m $url2
     else
       echo $response
     end
