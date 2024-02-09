@@ -25,6 +25,7 @@ ln -s ~/dotfiles/lvim.lua  ~/.config/lvim/config.lua
 echo "Configured LunarVim"
 
 # Tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 rm ~/.tmux.conf
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 echo "Configued Tmux.\n RUN <prefix>+I OTHERWISE TMUX PLUGINS WILL NOT WORK"

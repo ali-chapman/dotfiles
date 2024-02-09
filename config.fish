@@ -1,15 +1,22 @@
 if status is-interactive
   set -gx LESS "-FRX"
-  set -gx PNPM_HOME "/home/alichapman/.local/share/pnpm"
   set -gx fish_greeting
   set -gx EDITOR "~/.local/bin/lvim"
 
-  fish_add_path ~/.npm-global/bin ~/.local/bin ~/.cargo/bin ~/go/bin $PNPM_HOME
+  fish_add_path ~/.bin ~/.npm-global/bin ~/.local/bin ~/.cargo/bin ~/go/bin
 
   alias gs "git status"
   alias gd "git diff"
-  alias gpo 'git push -u origin $(git branch --show-current)'
+  alias gpo 'git push -u origin (git branch --show-current)'
   abbr -a gsw "git switch"
+
+  function note
+    bass source ~/dotfiles/note.bash ';' note $argv
+  end
+
+  function todo
+    ~/dotfiles/todo.py $argv
+  end
 
   function wa
     set -f APPID "5QEE8H-V4H8V4YEK8"

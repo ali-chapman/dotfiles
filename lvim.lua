@@ -1,7 +1,7 @@
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "pop-punk"
+lvim.colorscheme = "codemonkey"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -46,6 +46,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
   "json",
   "haskell",
+  "markdown",
 }
 
 lvim.builtin.treesitter.highlight.enabled = true
@@ -59,13 +60,35 @@ lvim.plugins = {
       require "surround".setup { mappings_style = "surround" }
     end
   },
-  { "christoomey/vim-tmux-navigator" },
+  { "christoomey/vim-tmux-navigator",
+    cmd = {
+        "TmuxNavigateLeft",
+        "TmuxNavigateDown",
+        "TmuxNavigateUp",
+        "TmuxNavigateRight",
+        "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
   { "lunarvim/colorschemes" },
   { "bluz71/vim-moonfly-colors" },
   { "rafi/awesome-vim-colorschemes" },
   { "bignimbus/pop-punk.vim" },
   { "voldikss/vim-floaterm" },
-  { "justinmk/vim-sneak" }
+  { "justinmk/vim-sneak" },
+  { "plasticboy/vim-markdown" },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  }
 }
 
 lvim.lsp["null_ls"].autostart = true
