@@ -5,7 +5,7 @@ if status is-interactive
   set -gx EDITOR "~/.local/bin/lvim"
   set -Ux PYENV_ROOT $HOME/.pyenv
 
-  fish_add_path ~/.bin ~/.npm-global/bin ~/.local/bin ~/.cargo/bin ~/go/bin $PYENV_ROOT/bin
+  fish_add_path ~/.bin ~/.npm-global/bin ~/.local/bin ~/.cargo/bin ~/go/bin $PYENV_ROOT/bin ~/.local/share/bob/nvim-bin
 
   pyenv init - | source
 
