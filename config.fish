@@ -1,9 +1,13 @@
 if status is-interactive
+  eval (/opt/homebrew/bin/brew shellenv)
   set -gx LESS "-FRX"
   set -gx fish_greeting
   set -gx EDITOR "~/.local/bin/lvim"
+  set -Ux PYENV_ROOT $HOME/.pyenv
 
-  fish_add_path ~/.bin ~/.npm-global/bin ~/.local/bin ~/.cargo/bin ~/go/bin
+  fish_add_path ~/.bin ~/.npm-global/bin ~/.local/bin ~/.cargo/bin ~/go/bin $PYENV_ROOT/bin
+
+  pyenv init - | source
 
   alias gs "git status"
   alias gd "git diff"

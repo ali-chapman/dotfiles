@@ -1,0 +1,20 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+import = [ "~/.config/alacritty/themes/themes/hyper.toml" ]
+
+[font]
+size = 16
+
+[font.normal]
+family = "FiraMono Nerd Font Mono"
+
+[window]
+startup_mode = "maximized"
+dynamic_title = true
+
+[bell]
+animation = "EaseOutExpo"
+duration = 50
+
+[shell]
+program = "/opt/homebrew/bin/tmux"

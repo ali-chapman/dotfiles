@@ -6,8 +6,8 @@ echo "CONFIGURING MACHINE"
 # Alacritty config
 mkdir -p ~/.config/alacritty/themes
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
-rm ~/.config/alacritty/alacritty.yml
-ln -s ~/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
+rm ~/.config/alacritty/alacritty.toml
+ln -s ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
 echo "Configured Alacritty"
 
 # Fish
