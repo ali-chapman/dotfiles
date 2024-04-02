@@ -1,5 +1,5 @@
 if status is-interactive
-  if -d /opt/homebrew/bin/brew
+  if test -d /opt/homebrew/bin/brew
     eval (/opt/homebrew/bin/brew shellenv)
   end
   if not functions -q fundle
@@ -46,5 +46,9 @@ if status is-interactive
     else
       echo $response
     end
+  end
+
+  if test -d ~/.general
+    source ~/.general/*
   end
 end
