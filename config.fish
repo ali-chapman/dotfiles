@@ -2,6 +2,14 @@ if status is-interactive
   if -d /opt/homebrew/bin/brew
     eval (/opt/homebrew/bin/brew shellenv)
   end
+  if not functions -q fundle
+    eval (curl -sfL https://git.io/fundle-install)
+  end
+
+  fundle plugin 'edc/bass'
+  fundle plugin 'pure-fish/pure'
+  fundle plugin 'jethrokuan/z'
+
   set -gx LESS "-FRX"
   set -gx fish_greeting
   set -gx EDITOR "~/.local/bin/lvim"
