@@ -1,7 +1,12 @@
 if status is-interactive
+  if set -q TMUX_OUTER_STATUS_BG
+    tmux set -g status-bg $TMUX_OUTER_STATUS_BG
+  end
+
   if test -d /opt/homebrew/bin/brew
     eval (/opt/homebrew/bin/brew shellenv)
   end
+
   if not functions -q fundle
     eval (curl -sfL https://git.io/fundle-install)
   end
