@@ -29,19 +29,10 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
---
--- Clipboard overrides for system-clipboard integration and SSH-TMUX-Forwarding
-local is_gui_running = vim.fn.has('gui_running') == 1
-local is_nvim = vim.fn.has('nvim') == 1
-local has_display = os.getenv('DISPLAY') ~= nil
 
-if is_gui_running or (is_nvim and has_display) then
-  vim.api.nvim_set_keymap('n', '<Leader>y', '"+y', { noremap = true })
-else
-  -- Copy to attached terminal using the yank(1) script:
-  -- https://github.com/sunaku/home/blob/master/bin/yank
-  vim.api.nvim_set_keymap('n', '<Leader>y', 'y:call system("yank > /dev/tty", @0)<CR>', { noremap = true, silent = true })
-end
+-- Copy to attached terminal using the yank(1) script:
+-- https://github.com/sunaku/home/blob/master/bin/yank
+vim.api.nvim_set_keymap('n', '<Leader>y', 'y:call system("yank > /dev/tty", @0)<CR>', { noremap = true, silent = true })
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
