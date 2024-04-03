@@ -10,6 +10,10 @@ if status is-interactive
   fundle plugin 'edc/bass'
   fundle plugin 'pure-fish/pure'
   fundle plugin 'jethrokuan/z'
+  fundle plugin 'jorgebucaran/nvm.fish'
+  fundle init
+
+  nvm -s use lts/iron
 
   set -gx LESS "-FRX"
   set -gx fish_greeting
