@@ -30,10 +30,6 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
--- Copy to attached terminal using the yank(1) script:
--- https://github.com/sunaku/home/blob/master/bin/yank
-vim.api.nvim_set_keymap('n', '<Leader>y', 'y:call system("yank > /dev/tty", @0)<CR>', { noremap = true, silent = true })
-
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -104,6 +100,10 @@ formatters.setup {
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     filetypes = { "typescript", "typescriptreact" },
   },
+  {
+    command = "ruff",
+    filetypes = { "python" },
+  }
 }
 
 local linters = require "lvim.lsp.null-ls.linters"
