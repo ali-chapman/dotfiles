@@ -19,6 +19,7 @@ def main():
     parser.add_argument('-r', '--remove', metavar="INDEX", type=int, help="Remove an item by INDEX number.")
     parser.add_argument('-e', '--edit', nargs=2, metavar=("INDEX", "ITEM"), help="Edit an item at INDEX with the provided text.")
     parser.add_argument('-f', '--filter', metavar="KEYWORD", help="Filter todos by a keyword")
+    parser.add_argument('-q', '--quiet', action=argparse.BooleanOptionalAction, help="Suppress output")
     args = parser.parse_args()
 
     if args.edit:
@@ -27,7 +28,8 @@ def main():
             lines[int(index) - 1] = new_text
             with open(conf, 'w') as f:
                 f.writelines('\n'.join(lines) + '\n')
-            print_lines(conf)
+            if not args.quiet:
+                print_lines(conf)
         else:
             print(f"Invalid index: {index}")
  
@@ -49,13 +51,15 @@ def main():
     elif args.add:
         with open(conf, 'a') as f:
             f.write(args.add.replace('\n', '') + '\n')
-        print_lines(conf)
+        if not args.quiet:
+            print_lines(conf)
     elif args.remove:
         if 1 <= args.remove <= len(lines):
             lines.pop(args.remove - 1)
             with open(conf, 'w') as f:
                 f.writelines('\n'.join(lines) + '\n')
-            print_lines(conf)
+            if not args.quiet:
+                print_lines(conf)
         else:
             print(f"Invalid index: {args.remove}")
  
