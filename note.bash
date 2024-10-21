@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 function note() {
-  local notes_dir="${HOME}/notes"
+  local notes_dir="${HOME}/Documents/notes"
   local title="$1"
 
   if [ -z "$title" ]; then
