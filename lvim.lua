@@ -22,13 +22,15 @@ lvim.builtin.which_key.mappings["T"] = {
   g = { "<cmd>Telescope live_grep<CR>", "Grep" }
 }
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.view.width = 55
+
+-- Prepend mise shims to PATH
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -89,27 +91,20 @@ lvim.plugins = {
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
-  }
-}
-
-lvim.lsp["null_ls"].autostart = true
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  {
-    command = "prettier",
-    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "typescript", "typescriptreact", "javascript" },
   },
-  {
-    command = "ruff",
-    filetypes = { "python" },
-  }
+  { "github/copilot.vim" }
 }
 
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  { command = "shellcheck", filetypes = { "bash" } }
-}
+vim.filetype.add({
+  extension = {
+    gotmpl = 'gotmpl',
+  },
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})
 
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
